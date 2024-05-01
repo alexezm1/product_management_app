@@ -1,3 +1,4 @@
+import colors from 'colors';
 import 'dotenv/config';
 import express from 'express';
 import db from './config/db';
@@ -8,9 +9,9 @@ async function connectDB() {
     try {
         await db.authenticate()
         db.sync()
-        console.log('Connection has been established successfully.');
+        console.log(colors.bgGreen.white('Connection has been established successfully.'));
     } catch (error) {
-        console.error('Unable to connect to the database:', error);
+        console.error(colors.bgRed.white('Unable to connect to the database:'), error);
     }
 }
 connectDB()
