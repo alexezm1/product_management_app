@@ -15,7 +15,13 @@ async function connectDB() {
     }
 }
 connectDB()
+
+// Express Instance
 const server = express()
+
+// Read FormData
+server.use(express.json())
+server.use(express.urlencoded())
 
 server.use('/api/products', productRouter)
 
