@@ -2,7 +2,7 @@ import colors from 'colors';
 import 'dotenv/config';
 import express from 'express';
 import db from './config/db';
-import { productRouter } from './routes/router';
+import { productRouter } from './routes/productRouter';
 
 // Connection to DB
 async function connectDB() {
