@@ -1,12 +1,12 @@
 import { Router } from 'express'
-import { createProduct } from '../controllers/product'
+import { createProduct, getProductById, getProducts } from '../controllers/product'
 import { productValidation } from '../middleware'
 
 const productRouter = Router()
 
-productRouter.get('/', (req, res) => {
-    res.json('Hello World')
-})
+productRouter.get('/', getProducts)
+
+productRouter.get('/:id', getProductById)
 
 productRouter.post('/', productValidation, createProduct)
 
