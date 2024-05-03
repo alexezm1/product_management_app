@@ -1,14 +1,14 @@
 import { Router } from 'express'
 import { createProduct, getProductById, getProducts } from '../controllers/product'
-import { productValidation } from '../middleware'
+import { createProductValidation, getProductByIdValidation } from '../middleware'
 
 const productRouter = Router()
 
 productRouter.get('/', getProducts)
 
-productRouter.get('/:id', getProductById)
+productRouter.get('/:id', getProductByIdValidation, getProductById)
 
-productRouter.post('/', productValidation, createProduct)
+productRouter.post('/', createProductValidation, createProduct)
 
 export { productRouter }
 
