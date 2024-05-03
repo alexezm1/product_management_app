@@ -4,8 +4,9 @@
   "description": "Rest API for Product Management App",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --exec npx ts-node src/index.ts"
+    "test": "jest --detectOpenHandles",
+    "dev": "nodemon --exec npx ts-node src/index.ts",
+    "pretest": "ts-node ./src/data --clear"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,12 @@
   "homepage": "https://github.com/alexezm1/product_management_app#readme",
   "devDependencies": {
     "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
+    "@types/supertest": "^6.0.2",
+    "jest": "^29.7.0",
     "nodemon": "^3.1.0",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   },
