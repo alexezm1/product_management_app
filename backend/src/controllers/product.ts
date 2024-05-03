@@ -50,7 +50,7 @@ export const updateProduct = async (req: Request, res: Response) => {
 
         res.json({ data: product })
     } catch (error) {
-
+        console.log(error)
     }
 }
 
@@ -70,6 +70,6 @@ export const updateAvailability = async (req: Request, res: Response) => {
 
         res.json({ data: product })
     } catch (error) {
-
+        console.log(error)
     }
 }
