@@ -73,3 +73,40 @@ export const updateAvailability = async (req: Request, res: Response) => {
         console.log(error)
     }
 }
+
+export const deleteProduct = async (req: Request, res: Response) => {
+    try {
+        // FIND PRODUCT
+        const { id } = req.params
+        const product = await Product.findByPk(id)
+
+        if (!product) {
+            return res.status(404).json({ error: 'Product not found' })
+        }
+
+        await product.destroy()
+        res.json({ data: { message: "Product has been deleted" } })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const hideProduct = async (req: Request, res: Response) => {
+    try {
+        // FIND PRODUCT
+        const { id } = req.params
+        const product = await Product.findByPk(id)
+
+        if (!product) {
+            return res.status(404).json({ error: 'Product not found' })
+        }
+
+        // UPDATE PRODUCT HIDDEN
+        product.hidden = !product.dataValues.hidden
+        await product.save()
+
+        res.json({ data: product })
+    } catch (error) {
+        console.log(error)
+    }
+}

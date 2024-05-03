@@ -37,7 +37,19 @@ export const updateProductValidation = async (req: Request, res: Response, next:
 }
 
 export const updateAvailabilityValidation = async (req: Request, res: Response, next: NextFunction) => {
-    await check('availability').isBoolean().withMessage('Availability Invalid').run(req)
+    await check('availability').isBoolean().withMessage('Availability value is Invalid').run(req)
+
+    let errors = validationResult(req)
+
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() })
+    }
+
+    next()
+}
+
+export const updateHiddenValidation = async (req: Request, res: Response, next: NextFunction) => {
+    await check('hidden').isBoolean().withMessage('Hidden value is Invalid').run(req)
 
     let errors = validationResult(req)
 

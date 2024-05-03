@@ -20,6 +20,12 @@ class Product extends Model {
         type: DataType.BOOLEAN()
     })
     declare availability: boolean
+
+    @Default(false)
+    @Column({
+        type: DataType.BOOLEAN()
+    })
+    declare hidden: boolean
 }
 
 export default Product
