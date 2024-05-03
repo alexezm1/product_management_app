@@ -12,7 +12,8 @@ export const getProducts = async (req: Request, res: Response) => {
 
 export const getProductById = async (req: Request, res: Response) => {
     try {
-        const product = await Product.findOne(req.params)
+        const { id } = req.params
+        const product = await Product.findByPk(id)
         res.json({ data: product })
     } catch (error) {
         console.log(error)
