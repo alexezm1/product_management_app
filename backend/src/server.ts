@@ -25,4 +25,8 @@ server.use(express.urlencoded())
 
 server.use('/api/products', productRouter)
 
+// server.get('/api', (req, res) => {
+//     res.json('Desde Api')
+// })
+
 export default server;
