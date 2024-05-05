@@ -1,7 +1,9 @@
 import colors from 'colors';
 import 'dotenv/config';
 import express from 'express';
+import swaggerUi from 'swagger-ui-express';
 import db from './config/db';
+import { swaggerSpec, swaggerUIOptions } from './config/swagger';
 import { productRouter } from './routes/productRouter';
 
 // Connection to DB
@@ -25,8 +27,7 @@ server.use(express.urlencoded())
 
 server.use('/api/products', productRouter)
 
-// server.get('/api', (req, res) => {
-//     res.json('Desde Api')
-// })
+// DOCS
+server.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerUIOptions))
 
 export default server;
