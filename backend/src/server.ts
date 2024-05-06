@@ -1,4 +1,5 @@
 import colors from 'colors';
+import cors, { CorsOptions } from 'cors';
 import 'dotenv/config';
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
@@ -20,6 +21,19 @@ connectDB()
 
 // Express Instance
 const server = express()
+
+// Enable CORS
+const corsOptions: CorsOptions = {
+    origin: function (origin, callback) {
+        if (origin === process.env.FRONTEND_URL) {
+            callback(null, true)
+        } else {
+            callback(new Error('CORS Error'))
+        }
+    }
+}
+
+server.use(cors(corsOptions))
 
 // Read FormData
 server.use(express.json())
