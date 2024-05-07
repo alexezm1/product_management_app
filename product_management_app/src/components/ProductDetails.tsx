@@ -1,4 +1,4 @@
-import { Form, useNavigate } from "react-router-dom";
+import { Form, useFetcher, useNavigate } from "react-router-dom";
 import { formatCurrency } from "../helpers/utils";
 import { Product } from "../types";
 
@@ -7,6 +7,7 @@ type ProductDetailsProps = {
 };
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
+  const fetcher = useFetcher();
   const isAvailable = product.availability;
   const isHidden = product.hidden;
   const navigate = useNavigate();
@@ -19,10 +20,34 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           {formatCurrency(product.price)}
         </td>
         <td className="p-2 text-lg text-gray-800">
-          {isAvailable ? "Available" : "Not Available"}
+          <fetcher.Form method="POST">
+            <button
+              type="submit"
+              name="availability"
+              className={` rounded-lg w-full p-2 uppercase font-bold text-xs border border-black ${
+                isAvailable ? "text-black" : "text-red-500"
+              }`}
+              value={product.availability.toString()}
+            >
+              {isAvailable ? "Available" : "Not Available"}
+            </button>
+            <input type="hidden" name="id" value={product.id} />
+          </fetcher.Form>
         </td>
         <td className="p-2 text-lg text-gray-800">
-          {isHidden ? "Hidden" : "Not Hidden"}
+          <fetcher.Form method="POST">
+            <button
+              type="submit"
+              name="hidden"
+              className={` rounded-lg w-full p-2 uppercase font-bold text-xs border border-black ${
+                isHidden ? " text-red-500 " : " text-black"
+              }`}
+              value={product.hidden.toString()}
+            >
+              {isHidden ? "Hidden" : "Not Hidden"}
+            </button>
+            <input type="hidden" name="id" value={product.id} />
+          </fetcher.Form>
         </td>
         <td className="p-2 text-lg text-gray-800 ">
           <div className="flex gap-2 items-center">

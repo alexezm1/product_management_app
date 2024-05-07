@@ -1,5 +1,5 @@
 import { ActionFunctionArgs, redirect } from "react-router-dom";
-import { addProduct, deleteProduct, updateProduct } from "../../services/productService";
+import { addProduct, deleteProduct, updateAvailability, updateHidden, updateProduct } from "../../services/productService";
 
 export async function newProductAction({ request }: ActionFunctionArgs) {
     const data = Object.fromEntries(await request.formData())
@@ -35,4 +35,14 @@ export async function deleteProductAction({ params }: ActionFunctionArgs) {
         await deleteProduct(+params.id)
         return redirect('/')
     }
+}
+
+export async function updateAvailabilityAction({ request }: ActionFunctionArgs) {
+    const data = Object.fromEntries(await request.formData())
+    if (data.availability) {
+        await updateAvailability(+data.id)
+    } else {
+        await updateHidden(+data.id)
+    }
+    return {}
 }

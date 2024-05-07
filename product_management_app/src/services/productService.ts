@@ -80,3 +80,21 @@ export async function deleteProduct(id: Product['id']) {
         return error
     }
 }
+
+export async function updateAvailability(id: Product['id']) {
+    try {
+        const url = `${API_URL}/api/products/${id}`
+        await axios.patch(url)
+    } catch (error) {
+        return error
+    }
+}
+
+export async function updateHidden(id: Product['id']) {
+    try {
+        const url = `${API_URL}/api/products/${id}`
+        await axios.patch(`${url}/hide`)
+    } catch (error) {
+        return error
+    }
+}

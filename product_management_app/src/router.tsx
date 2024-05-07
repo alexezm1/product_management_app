@@ -3,6 +3,7 @@ import {
   deleteProductAction,
   editProductAction,
   newProductAction,
+  updateAvailabilityAction,
 } from "./helpers/actions";
 import { editProductLoader, productLoader } from "./helpers/loaders";
 import MainLayout from "./layouts/MainLayout";
@@ -19,6 +20,7 @@ export const router = createBrowserRouter([
         index: true,
         element: <Products />,
         loader: productLoader,
+        action: updateAvailabilityAction,
       },
       {
         path: "products/new",
