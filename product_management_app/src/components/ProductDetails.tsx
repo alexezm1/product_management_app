@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 import { formatCurrency } from "../helpers/utils";
 import { Product } from "../types";
 
@@ -32,6 +32,17 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             >
               Edit
             </button>
+            <Form
+              className="w-full"
+              method="POST"
+              action={`products/${product.id}/delete`}
+            >
+              <input
+                className="bg-red-600 text-white rounded-lg w-full p-2 uppercase font-bold text-xs"
+                type="submit"
+                value={"Delete"}
+              />
+            </Form>
           </div>
         </td>
       </tr>

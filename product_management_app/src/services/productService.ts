@@ -71,3 +71,12 @@ export async function updateProduct(data: ProductData, id: Product['id']) {
         return error
     }
 }
+
+export async function deleteProduct(id: Product['id']) {
+    try {
+        const url = `${API_URL}/api/products/${id}`
+        await axios.delete(url)
+    } catch (error) {
+        return error
+    }
+}

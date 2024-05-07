@@ -1,5 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import { editProductAction, newProductAction } from "./helpers/actions";
+import {
+  deleteProductAction,
+  editProductAction,
+  newProductAction,
+} from "./helpers/actions";
 import { editProductLoader, productLoader } from "./helpers/loaders";
 import MainLayout from "./layouts/MainLayout";
 import EditProduct from "./pages/EditProduct";
@@ -26,6 +30,10 @@ export const router = createBrowserRouter([
         element: <EditProduct />,
         action: editProductAction,
         loader: editProductLoader,
+      },
+      {
+        path: "products/:id/delete",
+        action: deleteProductAction,
       },
     ],
   },
