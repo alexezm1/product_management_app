@@ -36,6 +36,11 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
               className="w-full"
               method="POST"
               action={`products/${product.id}/delete`}
+              onSubmit={(e) => {
+                if (!confirm("Delete?")) {
+                  e.preventDefault();
+                }
+              }}
             >
               <input
                 className="bg-red-600 text-white rounded-lg w-full p-2 uppercase font-bold text-xs"
