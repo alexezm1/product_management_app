@@ -2,6 +2,7 @@ import colors from 'colors';
 import cors, { CorsOptions } from 'cors';
 import 'dotenv/config';
 import express from 'express';
+import morgan from 'morgan';
 import swaggerUi from 'swagger-ui-express';
 import db from './config/db';
 import { swaggerSpec, swaggerUIOptions } from './config/swagger';
@@ -38,6 +39,8 @@ server.use(cors(corsOptions))
 // Read FormData
 server.use(express.json())
 server.use(express.urlencoded())
+
+server.use(morgan('dev'))
 
 server.use('/api/products', productRouter)
 
