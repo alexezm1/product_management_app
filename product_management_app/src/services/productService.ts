@@ -63,7 +63,6 @@ export async function updateProduct(data: ProductData, id: Product['id']) {
         const response = await axios.put(url, updatedProduct)
         const result = ProductSchema.safeParse(response.data.data)
         if (result.success) {
-            console.log(result.data)
             return result.data
         } else {
             throw new Error('Could not update Product')
